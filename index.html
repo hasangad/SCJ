@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>المجلس الأعلى للقضاء | إستعلام عن معاملة</title>
+<!--<base href="http://madadrental.com/">-->
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script type="text/javascript">
+ //https://phonegappro.com/tutorials/how-to-parse-read-json-using-phonegap-apache-cordova/
+ //https://phonegappro.com/tutorials/build-mobile-apps-with-wordpress-using-phonegap-part-1/
+ /*.htaccess ----------------------------------
+ <IfModule mod_headers.c>
+  <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css|css|js)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+ */
+</script>
+<link rel='stylesheet' id='bootstrap.min-css'  href='bs/css/bootstrap.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap.min-css-rtl'  href='bs/css/bootstrap-rtl.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap.min-css-controllers'  href='bs/css/controllers.css' type='text/css' media='all' />
+<link rel='stylesheet' id='css-style' href="css/fa/css/font-awesome.min.css" type='text/css' media='all' />
+<link rel='stylesheet' id='css-style'  href='css/style.css' type='text/css' media='all' />
+</head>
+<body>
+<a href="index.html" class="container-fluid no-padding"><img src="images/logo.png" alt="" title="" width="567" height="256" class="logo"></a>
+<div class="madad_body container">
+  <div class="hr"></div>
+  <h1>الخدمات الإلكتروينة</h1>
+  <h2>الإستعلام عن معاملة</h2>
+  <div id="returnmessage" style="display:none"></div>
+  
+  <div class="result alert alert-success" style="display:none">
+  
+  <div class="hr"></div>
+  
+  		<div class="col-xs-12">
+        
+        	<b class="col-xs-6">رقم قيد المجلس</b>
+            <p class="col-xs-6 strIncomingNumber_result"></p>
+            
+            <div class="hr"></div>
+            
+            <b class="col-xs-6">تاريخ المعاملة</b>
+            <p class="col-xs-6 date_result"></p>
+            
+            <div class="hr"></div>
+            
+            <b class="col-xs-6">الموضوع</b>
+            <p class="col-xs-6 subject_result"></p>
+            
+            <div class="hr"></div>
+            
+            <b class="col-xs-6">رقم الوارد الخارجي</b>
+            <p class="col-xs-6 IncomingNumberExternal_result"></p>
+            
+            <div class="hr"></div>
+            
+            <b class="col-xs-6">حالة المعاملة</b>
+            <p class="col-xs-6 status_result btn-danger"></p>
+            
+            <div class="hr"></div>
+            
+             <b class="col-xs-6">رقم الهوية</b>
+            <p class="col-xs-6 ID_result"></p>
+            
+            <div class="hr"></div>
+            
+             <b class="col-xs-6">الجوال</b>
+            <p class="col-xs-6 Mobile_result"></p>
+            
+            <div class="hr"></div>
+        
+        </div>
+        
+          <div class="hr"></div>
+
+  
+  
+  </div>
+  
+  
+  <form action="" method="GET">
+    <div class="col-xs-12">
+      <label class="col-xs-12">رقم القيد بالمجلس</label>
+      <input class="form-control col-xs-12" data-val="true" data-val-regex="رقم القيد خارجي مكوّن من أرقام فقط." data-val-regex-pattern="^\d{1,}$" id="IncomingNumber" name="IncomingNumber" type="text" value="">
+    </div>
+    <div class="col-xs-12">
+      <label class="col-xs-12">العام</label>
+      <select class="form-control col-xs-12" data-val="true" data-val-number="The field Year must be a number." data-val-required="السنة إجبارية" id="Year" name="Year">
+        <option value="">اختر السنة</option>
+        <option value="1430">1430</option>
+        <option value="1431">1431</option>
+        <option value="1432">1432</option>
+        <option value="1433">1433</option>
+        <option value="1434">1434</option>
+        <option value="1435">1435</option>
+        <option value="1436">1436</option>
+        <option value="1437">1437</option>
+        <option value="1438">1438</option>
+      </select>
+   </div>
+    <div class="col-xs-12">
+      <label>رقم الباركود</label>
+    <input class="numeric col-xs-12 form-control" data-val="true" data-val-regex="رقم الباركود مكوّن من 10 أرقام." data-val-regex-pattern="^\d{10}$" id="BarCode" name="BarCode" type="text" value="">
+    </div>
+    <div class="col-xs-12">
+  <label class="col-xs-12">رقم الوارد الخارجي</label>
+  <input class="col-xs-12 form-control" data-val="true" data-val-regex="رقم الوارد خارجي مكوّن من أرقام فقط." data-val-regex-pattern="^\d{1,}$" id="IncomingNumberExternal" name="IncomingNumberExternal" type="text" value="">
+   </div>
+     <div class="hr"></div>
+  <div class="hr"></div>
+    <div class="col-xs-12">
+      <!--<input type="submit"  id="submit" value="بحث" class="btn btn-lg btn-success col-xs-12">-->
+      <!--<input type="submit"  id="submit" value="بحث" class="btn btn-lg btn-success col-xs-12">-->
+      <button type="button" id="submit" class="btn btn-lg btn-success col-xs-12"  onclick="">بحث</button>
+      <!--<input type="reset" onclick="window.location.href = '';" value="إلغاء">-->
+    </div>
+  </form>
+  <script>
+$(document).ready(function() {
+$("#submit").click(function() {
+var strYear = $("#Year").val();
+var strIncomingNumber = $("#IncomingNumber").val();
+var IncomingNumberExternal = $("#IncomingNumberExternal").val();
+var barCode = $("#barCode").val();
+$("#returnmessage").empty(); // To empty previous error/success message.
+if ( strYear == '' ) {
+alert("برجاء اختيار العام !");
+} else {
+  var url = "https://iservices.scj.gov.sa:9222/api/CorsService/SearchCorrespondence?apiKey=BBFB30A3-0FB7-44BD-A603-572A259294DD&year="+strYear+"&incomingNumber="+strIncomingNumber+"&nationalID=&incomingNumberExternal="+IncomingNumberExternal+"&barCode="+barCode+"";
+    
+  $.getJSON(url,function(result){
+	  //alert ("test"); 
+  //console.log(result);
+ $.each(result, function(i , data){
+     //alert(data.CORRESPONDENCESUBJECT);
+if(data.CORRESPONDENCESUBJECT !== "") { 
+   $("form").fadeOut();   
+ //$("#returnmessage").append("تم إرسال طلب حجزك بنجاح!");
+ $(".result .strIncomingNumber_result").append(data.CORRESPONDENCENUMBER);
+ $(".result .date_result").append(data.CORRESPONDENCEDATE);
+ $(".result .subject_result").append(data.CORRESPONDENCESUBJECT);
+ $(".result .IncomingNumberExternal_result").append(data.EXTERNALNUMBER);
+ //alert(data.ISEXPORTED);
+ if( data.ISEXPORTED == "1"){ var STATUS ="تم التصديق"; } else { if(data.ISARCHIVED == "1") { var STATUS ="تحت الإجراء"; } else { var STATUS ="غير متوفر !"; } }
+ $(".result .status_result").append(STATUS);
+ $(".result .ID_result").append(data.IDNUMBER);
+ $(".result .Mobile_result").append(data.MOBILENUMBER);
+
+ $(".result").fadeIn();
+  }
+ else 
+ { $(".madad_body").append('<div class="alert alert-danger">حدث خطأ ما ، برجاء المحاولة مرة أخرى بعد قليل !</div>');  }
+ });
+});
+}
+});
+});
+</script>
+  <div class="hr"></div>
+</div>
+<!-- End of madad body -->
+</body>
+</html>

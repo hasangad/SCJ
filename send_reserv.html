@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>مدد السعودية لتأجير السيارات</title>
+<!--<base href="http://madadrental.com/">-->
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+
+ 
+/* function toggle_sidebar()
+        {
+			
+            var sidebar = document.getElementById("sidebar");
+            
+            console.log(sidebar.style.left);
+            
+            if(sidebar.style.right == "-35%")
+            {
+                sidebar.style.right = "0%";
+            }
+            else
+            {
+                sidebar.style.right = "-35%";
+            }
+        }*/
+ </script>
+ 
+   <script>
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+
+
+var car_id = getUrlParameter('car_id');
+
+$(".car_id").val(car_id);
+
+
+</script>
+ 
+<link rel='stylesheet' id='bootstrap.min-css'  href='bs/css/bootstrap.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap.min-css-rtl'  href='bs/css/bootstrap-rtl.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='bootstrap.min-css-controllers'  href='bs/css/controllers.css' type='text/css' media='all' />
+<link rel='stylesheet' id='css-style' href="css/fa/css/font-awesome.min.css" type='text/css' media='all' />
+<link rel='stylesheet' id='css-style'  href='css/style.css' type='text/css' media='all' />
+</head>
+<body>
+
+
+<a href="index.html" class="container-fluid no-padding"><img src="images/logo.png" alt="" title="" width="" height="" class="logo"></a>
+
+<div class="madad_body container"> 
+
+<div class="home-icons">
+<a href="index.html" class="col-xs-4">
+<span class="col-xs-12">
+<i class="fa fa-home"></i>
+<p>الرئيسية</p>
+</span></a>
+
+<a href="about.html" class="col-xs-4">
+<span class="col-xs-12">
+<i class="fa fa-info"></i>
+<p>عن الشركة</p>
+</span></a>
+
+<a href="contact.html" class="col-xs-4">
+<span class="col-xs-12">
+<i class="fa fa-envelope"></i>
+<p>التواصل</p>
+</span>
+</a>
+</div>
+
+   <div class="about">
+   
+   <div id="returnmessage" class="alert alert-success" style="display:none"></div>
+
+  
+  <form id="formElem" name="formElem" action="" method="get">
+  <div class="col-xs-12"><label class="col-xs-12">الإسم</label> <input  id="name" type="text"  value="" class="name form-control col-xs-12"></div>
+  <div class="col-xs-12"><label class="col-xs-12">رقم الجوال</label> <input  id="mobile" type="tel" value="" class="mobile form-control col-xs-12"></div>
+  <div class="col-xs-12"><label class="col-xs-12">البريد الإلكتروني</label> <input  id="email" type="text" value="" class="email form-control col-xs-12"></div>
+  <div class="col-xs-12">
+        
+        <label class="col-xs-12"> مكان الحجز</label>
+  
+          <select name="pickup_location_id" id="pickup_location_id" class="home-select form-control col-xs-12" required>
+            <option value="" selected="selected">مدينة / المكان:</option>
+            <option value="12">الدمام 1 - حى الاتصالات - شارع الامير نايف محل 6</option>
+            <option value="13">الدمام 2</option>
+            <option value="1">الرياض - حى الروضة - شارع ابن الهيثم</option>
+            <option value="20">الرياض - حى السويدى - الطريق الدائرى</option>
+            <option value="5">الرياض - فرع السلي - شارع شبه الجزيرة</option>
+            <option value="6">الرياض - فرع العزيزية - شارع العزيزية العام</option>
+            <option value="2">الرياض - فرع المربع - شارع الامير فيصل ابن تركى</option>
+            <option value="7">الرياض - فرع النسيم1 - شارع ابى الاسود الدؤلى</option>
+            <option value="8">الرياض - فرع النسيم2 - شارع ابى الاسود الدؤلى</option>
+            <option value="4">الرياض - فرع اليرموك - شارع الامام سعود</option>
+            <option value="9">الرياض - فرع خالد ابن الوليد</option>
+            <option value="3">الرياض -فرع الشفا - شارع الامام مالك</option>
+            <option value="10">جده 1 - شارع فلسطين</option>
+            <option value="11">جده 2 - شارع صارى</option>
+            <option value="14">جده 3 - حى الروضة</option>
+            <option value="15">جده 4 - شارع فلسطين</option>
+          </select>
+          </div>
+<div class="col-xs-12">
+                <label class="col-xs-12">التاريخ</label>
+          <input id="pickup_date" name="pickup_date" type="date" value="التاريخ" class="form-control col-xs-12" required>
+        </div>
+          <!--<div class="col-xs-12">
+                <label class="col-xs-3">الوقت</label>
+                          <input id="pickup_time" name="pickup_time" type="time" value="" class="form-control col-xs-9" required>
+        </div>-->
+    <!--<div class="col-xs-12">
+        
+        <label class="col-xs-3"> مكان التسليم </label>
+       
+          <select name="dropoff_location_id" id="dropoff_location_id" class="home-select form-control col-xs-9" required>
+            <option value="" selected="selected">مدينة / المكان:</option>
+            <option value="12">الدمام 1 - حى الاتصالات - شارع الامير نايف محل 6</option>
+            <option value="13">الدمام 2</option>
+            <option value="1">الرياض - حى الروضة - شارع ابن الهيثم</option>
+            <option value="20">الرياض - حى السويدى - الطريق الدائرى</option>
+            <option value="5">الرياض - فرع السلي - شارع شبه الجزيرة</option>
+            <option value="6">الرياض - فرع العزيزية - شارع العزيزية العام</option>
+            <option value="2">الرياض - فرع المربع - شارع الامير فيصل ابن تركى</option>
+            <option value="7">الرياض - فرع النسيم1 - شارع ابى الاسود الدؤلى</option>
+            <option value="8">الرياض - فرع النسيم2 - شارع ابى الاسود الدؤلى</option>
+            <option value="4">الرياض - فرع اليرموك - شارع الامام سعود</option>
+            <option value="9">الرياض - فرع خالد ابن الوليد</option>
+            <option value="3">الرياض -فرع الشفا - شارع الامام مالك</option>
+            <option value="10">جده 1 - شارع فلسطين</option>
+            <option value="11">جده 2 - شارع صارى</option>
+            <option value="14">جده 3 - حى الروضة</option>
+            <option value="15">جده 4 - شارع فلسطين</option>
+          </select>
+        </div>-->
+         <!-- <div class="col-xs-12">
+                <label class="col-xs-3">التاريخ</label>
+          <input id="dropoff_date" name="dropoff_date" type="date" value="التاريخ" class="form-control col-xs-9" required>
+        </div>-->
+          <!--<div class="col-xs-12">
+                <label class="col-xs-3">الوقت</label>
+                          <input id="dropoff_time" name="dropoff_time" type="time" value="" class="form-control col-xs-9" required>
+                          
+                          </div>-->
+      <!--<div class="col-xs-12">
+     <label class="col-xs-3"> <strong>نوع السيارة</strong> </label>
+     </div>-->
+     
+        <!--<input type="hidden" name="nrs_came_from_step1" value="yes" class="form-control col-xs-9">-->
+       <!--<div class="col-xs-12">
+                <label class="col-xs-3">الدرجة</label>
+          <select name="body_type_id" id="body_type_id" class="form-control col-xs-9" required>
+            <option value="0" selected="selected">الدرجة:</option>
+            <option value="1">سيدان / متوسطة</option>
+            <option value="2">سيدان / فئات</option>
+            <option value="3">فان SUV</option>
+          </select>
+        </div>-->
+         <!--<div class="col-xs-12">
+                <label class="col-xs-3">نوع الوقود </label>
+          <select name="fuel_type_id" id="fuel_type_id" class="form-control  col-xs-9" required>
+            <option value="0" selected="selected"> -- </option>
+            <option value="1">بنزين 91</option>
+            <option value="2">بنزين 95</option>
+          </select>
+        </div>-->
+   <div class="col-xs-12"><label class="col-xs-12">ملاحظات</label> <textarea id="message" class="notes form-control col-xs-12"></textarea></div>
+   <input type="hidden" class="car_id" id="car_id" name="car_id">
+  <!--<input id="nrs_do_search" type="submit" id="submit" name="nrs_do_search" value="بحث" class="btn btn-success col-xs-12 no-padding">-->
+  <div class="hr"></div>
+   <div class="col-xs-12"><button type="button" id="submit" class="btn btn-lg btn-success col-xs-12"  onclick="">إرسال طلب الحجز</button></div>
+
+
+  </form>
+  
+  </div>
+  
+   <script>
+$(document).ready(function() {
+$("#submit").click(function() {
+var name = $("#name").val();
+var email = $("#email").val();
+var pickup_location_id = $("#pickup_location_id").val();
+var pickup_date = $("#pickup_date").val();
+//var pickup_time = $("#pickup_time").val();
+//var dropoff_location_id = $("#dropoff_location_id").val();
+//var dropoff_date = $("#dropoff_date").val();
+//var dropoff_time = $("#dropoff_time").val();
+//var body_type_id = $("#body_type_id").val();
+//var fuel_type_id = $("#fuel_type_id").val();
+var message = $("#message").val();
+var mobile = $("#mobile").val();
+var car_id = getUrlParameter('car_id');
+$(".car_id").val(car_id);
+$("#returnmessage").empty(); // To empty previous error/success message.
+// Checking for blank fields.
+if (name == '' || email == '' || mobile == '') {
+alert("برجاء تعبئة الحقول !");
+} else {
+  /*var url="http://app.madadrental.com/send-mail.php?name1="+name+"&email1="+email+"&car_id1="+car_id+"&message1="+message+"&contact1="+contact+"&pickup_location_id1="+pickup_location_id+"&pickup_date1="+pickup_date+"&pickup_time1="+pickup_time+"&dropoff_location_id1="+dropoff_location_id+"&dropoff_date1="+dropoff_date+"&dropoff_time1="+dropoff_time+"&body_type_id1="+body_type_id+"&fuel_type_id1="+fuel_type_id+"";*/
+  
+  /*var url="http://madadrental.com/ap-send-reserve/?name1="+name+"&email1="+email+"&car_id1="+car_id+"&message1="+message+"&contact1="+contact+"&pickup_location_id1="+pickup_location_id+"&pickup_date1="+pickup_date+"&pickup_time1="+pickup_time+"&dropoff_location_id1="+dropoff_location_id+"&dropoff_date1="+dropoff_date+"&dropoff_time1="+dropoff_time+"&body_type_id1="+body_type_id+"&fuel_type_id1="+fuel_type_id+"";*/
+  
+   var url="http://madadrental.com/ap-send-reserve/?name1="+name+"&email1="+email+"&car_id1="+car_id+"&message1="+message+"&mobile1="+mobile+"&pickup_location_id1="+pickup_location_id+"&pickup_date1="+pickup_date+"";
+  $.getJSON(url,function(result){ 
+        console.log(result);
+
+ $.each(result, function(i , data){
+     
+     //alert(data.msg);
+	 
+	 if(data.msg === "Sent") { 
+	  
+	 //alert("تم إرسال طلب حجزك بنجاح"); 
+   $("#formElem").fadeOut();   
+ $("#returnmessage").append("تم إرسال طلب حجزك بنجاح!");
+ $("#returnmessage").fadeIn();
+  }
+ 
+ else 
+ 
+ { $(".madad_body").append('<div class="alert alert-danger">حدث خطأ ما ، برجاء المحاولة مرة أخرى بعد قليل !</div>');  }
+ 
+ });
+ 
+});
+
+}
+
+});
+
+});
+</script>
+</div>
+
+<div id="testfield"></div>
+  
+
+
+
+<!--SOURCE ::::::::::::: https://www.formget.com/jquery-contact-form/ -->
+
+</div>
+<!-- End of madad body -->
+
+</body>
+</html>
